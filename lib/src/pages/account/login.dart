@@ -19,7 +19,51 @@ class LoginPage extends StatelessWidget {
             appBar: AppBar(
                 title: const Text('登录'),
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                automaticallyImplyLeading: false),
+                automaticallyImplyLeading: false,
+                // 设置本来只在登录后的个人中心里，未登录进不去；
+                // 在这里加个入口，不用登录也能进主题 / 弹幕 / 关于。
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.settings_outlined),
+                    tooltip: '设置',
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (sheetContext) => SafeArea(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ListTile(
+                                leading: const Icon(Icons.palette_outlined),
+                                title: const Text('主题设置'),
+                                onTap: () {
+                                  Navigator.of(sheetContext).pop();
+                                  Get.toNamed('/theme_settings');
+                                },
+                              ),
+                              ListTile(
+                                leading: const Icon(Icons.subtitles_outlined),
+                                title: const Text('弹幕设置'),
+                                onTap: () {
+                                  Navigator.of(sheetContext).pop();
+                                  Get.toNamed('/danmaku_settings');
+                                },
+                              ),
+                              ListTile(
+                                leading: const Icon(Icons.info_outlined),
+                                title: const Text('关于'),
+                                onTap: () {
+                                  Navigator.of(sheetContext).pop();
+                                  Get.toNamed('/info');
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ]),
             body: Center(
               child: Container(
                 constraints: const BoxConstraints(maxWidth: 300),
