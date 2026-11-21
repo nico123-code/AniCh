@@ -10,7 +10,7 @@ class ThemeSettingsStorage {
     final user = box.read('user');
     avatar(user['avatar'] ?? '');
     isDynamic(box.read('isDynamic') ?? true);
-    styleColor(box.read('styleColor') ?? 0xff3498db);
+    styleColor(box.read('styleColor') ?? 0xff4CAF50);
   }
 
   // 主题模式
@@ -24,7 +24,7 @@ class ThemeSettingsStorage {
   }
 
   // 主题颜色
-  static RxInt styleColor = 0xff3498db.obs;
+  static RxInt styleColor = 0xff4CAF50.obs;
   static void setStyleColor(int e) {
     styleColor.value = e;
     box.write('styleColor', e);

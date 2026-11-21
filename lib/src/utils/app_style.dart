@@ -5,11 +5,11 @@ import 'package:get/get.dart';
 class AppColors {
   static ColorScheme lightColorScheme = ColorScheme.fromSeed(
     // primarySwatch: Colors.blue,
-    seedColor: const Color(0xff3498db),
+    seedColor: const Color(0xff4CAF50),
     brightness: Brightness.light,
   );
   static ColorScheme darkColorScheme = ColorScheme.fromSeed(
-    seedColor: const Color(0xff3498db),
+    seedColor: const Color(0xff4CAF50),
     brightness: Brightness.dark,
   );
 

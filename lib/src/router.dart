@@ -11,6 +11,7 @@ import 'package:xs/src/pages/bangumi_mark_list/view.dart';
 import 'package:xs/src/pages/bangumi_vod/view.dart';
 import 'package:xs/src/pages/character/view.dart';
 import 'package:xs/src/pages/download/view.dart';
+import 'package:xs/src/pages/home/illustration_view.dart';
 import 'package:xs/src/pages/home/view.dart';
 import 'package:xs/src/pages/person/view.dart';
 import 'package:xs/src/pages/settings/info.dart';
@@ -27,8 +28,10 @@ import 'package:xs/src/pages/thread/view.dart';
 
 class AppRoute {
   static final pages = [
-    // 主页
+    // 主页（Kazumi 式番剧推荐）
     GetPage(name: '/', page: () => const HomePage()),
+    // 原来的插画/COS 首页
+    GetPage(name: '/illustration', page: () => const IllustrationPage()),
     // 标签
     GetPage(name: '/tags', page: () => const TagsPage()),
     // 登录

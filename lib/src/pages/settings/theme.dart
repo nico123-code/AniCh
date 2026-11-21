@@ -153,6 +153,7 @@ class ThemeSettingsPage extends StatelessWidget {
                                           spacing: 8,
                                           runSpacing: 8,
                                           children: <Color>[
+                                            const Color(0xff4CAF50),
                                             const Color(0xffEF5350),
                                             const Color(0xff3498db),
                                             const Color(0xffF06292),

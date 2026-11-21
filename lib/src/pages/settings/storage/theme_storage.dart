@@ -9,7 +9,7 @@ class ThemeSettingsStorage {
   static void init() {
     themeMode(box.read('themeMode') ?? 0);
     isDynamic(box.read('isDynamic') ?? true);
-    styleColor(box.read('styleColor') ?? 0xff3498db);
+    styleColor(box.read('styleColor') ?? 0xff4CAF50);
   }
 
   // 主题模式
@@ -28,8 +28,9 @@ class ThemeSettingsStorage {
     box.write('isDynamic', e);
   }
 
-  // 主题颜色
-  static RxInt styleColor = 0xff3498db.obs;
+  // 主题颜色（默认 Kazumi 绿 0xFF4CAF50；已装过的设备沿用之前存的颜色，
+  // 想换绿得到设置-外观里关掉「动态取色」再选绿色）
+  static RxInt styleColor = 0xff4CAF50.obs;
   static void setStyleColor(int e) {
     styleColor.value = e;
     box.write('styleColor', e);
