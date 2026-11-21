@@ -70,3 +70,12 @@
   500、SSL 报错）就换下一个，只重试 GET 请求。之前 6 个 API 文件
   （`account` / `bangumi` / `home` / `search` / `tags` / `thread`）都写死
   `api.emmmm.eu.org` 一个地址，它挂了首页就一直「推荐加载失败」，全站都受影响。
+
+## 2026-11-21 修复 v3：番剧接口换新地址
+
+- v2 的备用地址还是不够：实测 `ani.emmmm.eu.org` 的 `/latest`（插画）正常，
+  但 `/bangumi/list` 报 500；`api.500403.xyz` 是 404；`api.emmmm.eu.org` 直接
+  SSL 报错。所以插画能看、番剧首页一直加载失败。
+- 从官方 1.5.27 的 IPA 里找到新地址并实测通过：`anich.sends.eu.org` 的
+  `/bangumi/list`、`/bangumi/latest` 都返回 200 真数据，现已排在
+  `ApiClient.hosts` 第一位。

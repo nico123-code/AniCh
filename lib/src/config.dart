@@ -36,11 +36,16 @@ class AppConfig {
 }
 
 /// 带备用地址的 API 客户端：主站 api.emmmm.eu.org 目前不稳定（SSL 报错 / 403），
-/// 按 api.json 里的地址列表顺序重试，某个地址请求失败就换下一个。
-/// 只重试 GET 请求，避免重复提交点赞、评论这类写操作。
+/// 按官方 1.5.27 的新地址 + api.json 的地址列表顺序重试，某个地址请求失败
+/// 就换下一个。只重试 GET 请求，避免重复提交点赞、评论这类写操作。
 class ApiClient {
+  // 实测（2026-11-21）：anich.sends.eu.org 的 /bangumi/list、/bangumi/latest
+  // 都返回 200 真数据；ani.emmmm.eu.org 的 /latest 正常但 /bangumi/list 报 500；
+  // api.500403.xyz 的 /bangumi/list 是 404；api.emmmm.eu.org 直接 SSL 报错。
   static const List<String> hosts = [
+    'https://anich.sends.eu.org',
     'https://ani.emmmm.eu.org',
+    'https://anich.emmmm.eu.org',
     'https://api.emmmm.eu.org',
     'https://api.500403.xyz',
     'https://api.emmmm.eu.org.cdn.cloudflare.net',
