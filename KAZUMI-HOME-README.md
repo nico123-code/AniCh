@@ -56,3 +56,17 @@
 是原来就有的 `lib/src/pages/bangumi_vod/view.dart:62` 的 `onPopInvoked` 弃用提示，
 新加/改动的文件零报错零警告；`dart format` 也已跑过。iOS 真机编译没法在这台 Linux 机器上做，
 以 GitHub Actions 那次构建为准；如果 Actions 报错，把日志发回来修。
+
+## 2026-11-21 修复（v2）：黑屏 + 关不掉的更新弹窗
+
+- **启动不再自动检查更新**：`lib/main.dart` 删了 `Utils.checkUpdate()`。之前这个包版本
+  号是 1.0.0，官方最新 1.5.27，一启动就弹强制更新弹窗，而且跨小版本时连「取消」
+  按钮都没有，只能点「更新」跳去官方下载页，等于被锁死。
+- **更新弹窗永远能取消**：`lib/src/utils/utils.dart` 的 `checkUpdate()` 对话框现在
+  不管大小版本都显示「取消」（设置页里手动点检查更新也会走到这里）。
+- **番剧接口加了备用地址**：新 `lib/src/config.dart` 里的 `ApiClient`，按官方
+  `api.json` 的地址列表（`ani.emmmm.eu.org`、`api.emmmm.eu.org`、`api.500403.xyz`、
+  `api.emmmm.eu.org.cdn.cloudflare.net`）顺序重试：一个地址请求失败（断连、403、
+  500、SSL 报错）就换下一个，只重试 GET 请求。之前 6 个 API 文件
+  （`account` / `bangumi` / `home` / `search` / `tags` / `thread`）都写死
+  `api.emmmm.eu.org` 一个地址，它挂了首页就一直「推荐加载失败」，全站都受影响。

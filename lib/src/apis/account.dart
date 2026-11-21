@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +7,7 @@ import 'package:xs/src/config.dart';
 import 'package:xs/protobuf/account.pb.dart';
 import 'package:xs/src/utils/account.dart';
 
-final api = Dio(BaseOptions(
-    baseUrl: AppConfig.baseUrl,
-    headers: {HttpHeaders.userAgentHeader: AppConfig.ua}));
+final api = ApiClient.create();
 final box = GetStorage();
 
 class AccountApi {

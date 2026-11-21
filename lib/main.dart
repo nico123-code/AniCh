@@ -56,8 +56,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // 检测更新
-    Utils.checkUpdate();
     // 获取用户信息
     final box = GetStorage();
     final token = box.read('token');

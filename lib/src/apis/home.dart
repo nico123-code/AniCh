@@ -1,11 +1,8 @@
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:xs/src/config.dart';
 
-final api = Dio(BaseOptions(
-    baseUrl: AppConfig.baseUrl,
-    headers: {HttpHeaders.userAgentHeader: AppConfig.ua}));
+final api = ApiClient.create();
 
 class HomeApi {
   // 最新

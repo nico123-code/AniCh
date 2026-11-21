@@ -382,16 +382,15 @@ class Utils {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    if (!majorBool && !minorBool)
-                      Expanded(
-                        child: TextButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          child: const Text('取消'),
-                        ),
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        child: const Text('取消'),
                       ),
-                    if (!majorBool && !minorBool) AppStyle.hGap12,
+                    ),
+                    AppStyle.hGap12,
                     Expanded(
                       child: TextButton(
                         onPressed: () {
