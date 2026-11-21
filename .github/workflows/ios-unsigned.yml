@@ -1,0 +1,31 @@
+name: Build AniCh Kazumi Home (unsigned IPA)
+
+# 手动触发：在 GitHub 仓库页面 Actions -> 选这个 workflow -> Run workflow。
+# 不需要 Mac，在 GitHub 的 macOS 机器上编出未签名 IPA，装机方式和 Kazumi 一样
+#（AltStore / Sideloadly，自备 Apple ID 签名）。
+on:
+  workflow_dispatch:
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.5"
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter build ios --release --no-codesign
+      - name: Package unsigned IPA
+        run: |
+          cd build/ios/iphoneos
+          mkdir Payload
+          cp -r Runner.app Payload/
+          zip -r AniCh-KazumiHome-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AniCh-KazumiHome-unsigned
+          path: build/ios/iphoneos/AniCh-KazumiHome-unsigned.ipa
